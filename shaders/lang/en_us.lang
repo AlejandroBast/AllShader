@@ -16,6 +16,8 @@ profile.HIGH_GRASS=§bHigh + Shader Grass
 profile.ALTERNATE_HIGH_GRASS=§bHigh + Shader Grass §7(Alt. Style)
 profile.VERY_HIGH=§9Very High
 profile.ULTRA=§dUltra
+profile.LUNAR=§cLunar §6§l(Para Lunar Client)
+profile.LUNAR.comment=High sin pasto 3D, sombras hasta 192 bloques estilo Complementary.
 
 option.OLD_LIGHTLEAK_FIX = Old Lightleak Fix
 option.CAVE_DETECTION = Cave detection
