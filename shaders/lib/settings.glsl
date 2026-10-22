@@ -1370,6 +1370,11 @@ const vec3 aerochrome_color = mix(vec3(1.0, 0.0, 0.0), vec3(0.715, 0.303, 0.631)
 	#undef SHADER_GRASS
 #endif
 
+// FIX Lunar Client: el terreno solido usaba teselacion + geometry shader (solo para el pasto 3D).
+// Lunar no dibuja el terreno con GL_PATCHES y los bloques solidos quedaban invisibles.
+// Se eliminaron gbuffers_terrain.tcs/.tes/.gsh y se fuerza el pasto 3D apagado.
+#undef SHADER_GRASS
+
 #if CUMULONIMBUS == 0 && !defined CloudLayer0 && !defined CloudLayer1 && !defined CloudLayer2 && !defined CloudLayer3
 	#undef VOLUMETRIC_CLOUDS
 	#undef CLOUDS_SHADOWS
