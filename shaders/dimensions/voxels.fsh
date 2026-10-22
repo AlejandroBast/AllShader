@@ -467,7 +467,7 @@ void main() {
                 // medium
         
                 // low
-                else if(blockID == ENTITY_SSS_WEAK || blockID == ENTITY_PLAYER || blockID == ENTITY_CURRENT_PLAYER) SSSAMOUNT = 0.4;
+                else if(blockID == ENTITY_SSS_WEAK || blockID == ENTITY_PLAYER || blockID == ENTITY_CURRENT_PLAYER || IS_EYES_MOB_SSS(blockID)) SSSAMOUNT = 0.4;
             #endif
         #else
             #if defined SHADER_GRASS && !defined CUTOUT

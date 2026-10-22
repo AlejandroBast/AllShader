@@ -18,3 +18,19 @@
 #define ENTITY_SSS_WEAK 1802
 #define ENTITY_SSS_NONE 1803
 #define ENTITY_SLIME 1804
+
+// mobs con ojos rojos (ver lib/red_eyes.glsl)
+#define ENTITY_EYES_ZOMBIE 1810
+#define ENTITY_EYES_SKELETON 1811
+#define ENTITY_EYES_CREEPER 1812
+#define ENTITY_EYES_VILLAGER 1813
+#define ENTITY_EYES_WITCH 1814
+#define ENTITY_EYES_PIGLIN 1815
+#define ENTITY_EYES_PIG 1816
+#define ENTITY_EYES_COW 1817
+#define ENTITY_EYES_SHEEP 1818
+#define ENTITY_EYES_CHICKEN 1819
+#define ENTITY_EYES_WOLF 1820
+#define IS_EYES_MOB(id) ((id) >= ENTITY_EYES_ZOMBIE && (id) <= ENTITY_EYES_WOLF)
+// antes estaban en el grupo de SSS debil (los esqueletos en el de sin SSS)
+#define IS_EYES_MOB_SSS(id) (IS_EYES_MOB(id) && (id) != ENTITY_EYES_SKELETON)

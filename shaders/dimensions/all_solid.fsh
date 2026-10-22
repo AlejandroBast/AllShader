@@ -3,6 +3,7 @@
 #include "/lib/settings.glsl"
 #include "/lib/blocks.glsl"
 #include "/lib/entities.glsl"
+#include "/lib/red_eyes.glsl"
 #include "/lib/items.glsl"
 #include "/lib/hsv.glsl"
 
@@ -624,6 +625,11 @@ void main() {
 	#endif
 	
 	if(Albedo.a < alphaTestRef) discard;
+
+	#if defined MOB_RED_EYES && defined ENTITIES && defined WORLD && !defined COLORWHEEL
+		bool redEye = isRedEyePixel(data_in.blockID, adjustedTexCoord.xy, textureSize(gtexture, 0));
+		if(redEye) Albedo.rgb = vec3(MOB_RED_EYES_R, MOB_RED_EYES_G, MOB_RED_EYES_B);
+	#endif
 	
 	#if defined IRIS_FEATURE_FADE_VARIABLE && VANILLA_CHUNK_FADING > 0 && !defined HAND
 		#ifdef TAA
@@ -844,7 +850,7 @@ void main() {
 					// medium
 			
 					// low
-					else if(data_in.blockID == ENTITY_SSS_WEAK || data_in.blockID == ENTITY_PLAYER || data_in.blockID == ENTITY_CURRENT_PLAYER) SSSAMOUNT = 0.4;
+					else if(data_in.blockID == ENTITY_SSS_WEAK || data_in.blockID == ENTITY_PLAYER || data_in.blockID == ENTITY_CURRENT_PLAYER || IS_EYES_MOB_SSS(data_in.blockID)) SSSAMOUNT = 0.4;
 				#endif
 			#else
 				#if defined SHADER_GRASS && !defined CUTOUT
@@ -1020,6 +1026,10 @@ void main() {
 		
 		#if defined WORLD && !defined ENTITIES && !defined HAND && defined BLOCKENTITIES && !defined COLORWHEEL
 			if(PORTAL) OutSpecular.a = endPortalEmission;
+		#endif
+
+		#if defined MOB_RED_EYES && defined ENTITIES && !defined COLORWHEEL
+			if(redEye) OutSpecular.a = MOB_RED_EYES_GLOW;
 		#endif
 
 		#if SSS_TYPE == 0
